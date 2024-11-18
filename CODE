@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SistemaCinema {
+
+    public static void exibirFilmes(ArrayList<String> filmes) {
+        System.out.println("Selecione um filme:");
+        for (String filme : filmes) {
+            System.out.println(filme);
+        }
+    }
+
+    public static void exibirSessoes(ArrayList<String> sessoes) {
+        System.out.println("\nSelecione a sessão do filme:");
+        for (int i = 0; i < sessoes.size(); i++) {
+            System.out.println((i + 1) + ". " + sessoes.get(i));
+        }
+    }
+
+    public static double calcularTotal(int quantidadeInteiro, int quantidadeMeia, double precoInteiro, double precoMeia) {
+        return (quantidadeInteiro * precoInteiro) + (quantidadeMeia * precoMeia);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayList<String> filmes = new ArrayList<>();
+        filmes.add("1. Venom");
+        filmes.add("2. American Pie");
+        filmes.add("3. Cidade de Deus");
+        filmes.add("4. Náufrago");
+        filmes.add("5. Maniaco do Parque");
+
+        ArrayList<String> sessoes = new ArrayList<>();
+        sessoes.add("14:00");
+        sessoes.add("16:30");
+        sessoes.add("19:00");
+        sessoes.add("21:30");
+
+        double precoInteiro = 32.0;
+        double precoMeia = 16.0;
+
+        boolean continuarComprando = true;
+
+        while (continuarComprando) {
+            exibirFilmes(filmes);
+
+            int opcaoFilme;
+            do {
+                System.out.print("\nDigite o número do filme desejado (1-5): ");
+                opcaoFilme = scanner.nextInt();
+            } while (opcaoFilme < 1 || opcaoFilme > 5);
+
+            exibirSessoes(sessoes);
+
+            int opcaoSessao;
+            do {
+                System.out.print("\nDigite o número da sessão desejada (1-4): ");
+                opcaoSessao = scanner.nextInt();
+            } while (opcaoSessao < 1 || opcaoSessao > 4);
+
+            System.out.print("\nDigite a quantidade de ingressos inteiros: ");
+            int quantidadeInteiro = scanner.nextInt();
+
+            System.out.print("Digite a quantidade de ingressos meia-entrada: ");
+            int quantidadeMeia = scanner.nextInt();
+
+            double total = calcularTotal(quantidadeInteiro, quantidadeMeia, precoInteiro, precoMeia);
+
+            System.out.println("\nResumo da compra:");
+            System.out.println("Filme: " + filmes.get(opcaoFilme - 1));
+            System.out.println("Sessão: " + sessoes.get(opcaoSessao - 1));
+            System.out.println("Ingressos Inteiros: " + quantidadeInteiro);
+            System.out.println("Ingressos Meia-Entrada: " + quantidadeMeia);
+            System.out.println("Total a Pagar: R$ " + total);
+
+            // Adicionar uma chamada para nextLine() para limpar o buffer de entrada.
+            scanner.nextLine(); // Limpa a linha residual do próximoInt
+
+            System.out.print("\nDeseja realizar outra compra? (sim/não): ");
+            String resposta = scanner.nextLine(); // Usando nextLine() para capturar a resposta do usuário
+            if (resposta.equalsIgnoreCase("não")) {
+                continuarComprando = false;
+            }
+        }
+
+        System.out.println("\nObrigado por usar nosso sistema de vendas de ingressos!");
+        scanner.close();
+    }
+}
