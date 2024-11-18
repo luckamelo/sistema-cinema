@@ -22,9 +22,7 @@ Após cada compra, o sistema pergunta se o usuário deseja realizar outra compra
 Estrutura do Projeto
 
 Linguagem: Java
-Bibliotecas Utilizadas:
-java.util.ArrayList para armazenar as opções de filmes e sessões.
-java.util.Scanner para capturar as entradas do usuário.
+
 
 Como Usar
 O programa irá solicitar que você escolha um filme, depois uma sessão.
